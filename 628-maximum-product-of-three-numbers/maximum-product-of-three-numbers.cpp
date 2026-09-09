@@ -1,11 +1,11 @@
 class Solution {
 public:
     int maximumProduct(vector<int>& nums) {
-        int max1, max2, max3, min1, min2;
+        int16_t max1, max2, max3, min1, min2;
             max1 = max2 = max3 = -1001;
             min1 = min2 = 1001;
 
-        for (int i = 0; i < nums.size(); i++) {
+        for (int16_t i = 0; i < nums.size(); i++) {
             if (nums[i] < min1) {
                 min2 = min1;
                 min1 = nums[i];
