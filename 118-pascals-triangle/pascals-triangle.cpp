@@ -3,8 +3,6 @@ public:
     vector<vector<int>> generate(int numRows) {
         if(numRows == 1)
             return {{1}};
-        else if(numRows == 1)
-            return {{1},{1,1}};
         vector<vector<int>> dp(numRows);
         dp[0] = {1};
         dp[1] = {1,1};
