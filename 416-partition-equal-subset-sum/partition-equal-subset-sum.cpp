@@ -1,31 +1,21 @@
 class Solution {
 public:
     bool canPartition(vector<int>& nums) {
-        uint16_t sum = 0;
-        unordered_set<uint16_t> occ;
-        for (size_t i = 0; i < nums.size(); i++) {
-            occ.insert(nums[i]);
-            sum += nums[i];
-        }
+        int sum = accumulate(nums.begin(), nums.end(), 0);
         if (sum % 2 != 0)
             return false;
 
-        if(occ.contains(sum / 2))
-            return true;
+        int target = sum / 2;
+        vector<bool> dp(target + 1, false);
+        dp[0] = true;
+        for (const auto& num : nums) {
+            for (size_t s = target; s >= num; s--)
+                if(dp[s - num])
+                    dp[s] = true;
 
-        vector<vector<uint16_t>> dp(nums.size() + 1, vector<uint16_t>(sum / 2 + 1, 0));
-
-        for (size_t i = 1; i <= nums.size(); i++) {
-            for (size_t s = 1; s <= sum / 2; s++)
-            {
-                if (nums[i - 1] <= s && dp[i - 1][s - nums[i - 1]] + nums[i - 1] > dp[i - 1][s]) {
-                    dp[i][s] = dp[i - 1][s - nums[i - 1]] + nums[i - 1];
-                }
-                else {
-                    dp[i][s] = dp[i - 1][s];
-                }
-            }
+            if(dp[target])
+                return true;
         }
-        return dp[nums.size()][sum / 2] == sum / 2;
+        return dp[target];
     }
 };
