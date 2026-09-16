@@ -4,9 +4,9 @@ public:
         vector<int> dp(amount + 1, INT_MAX - 1);
         dp[0] = 0;
         for (const int& coin : coins)
-        	for (int j = 1; j <= amount; j++)
-        		dp[j] = min(coin <= j ? 1 + dp[j - coin] : INT_MAX, dp[j]);
-        
+        	for (int j = coin; j <= amount; j++)
+        		dp[j] = min(1 + dp[j - coin], dp[j]);
+
         return dp.back() == INT_MAX - 1 ? -1 : dp.back();
     }
 };
