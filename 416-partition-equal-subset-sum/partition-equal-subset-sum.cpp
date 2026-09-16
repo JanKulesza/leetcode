@@ -6,7 +6,7 @@ public:
             return false;
 
         int target = sum / 2;
-        vector<bool> dp(target + 1, false);
+        bool* dp = new bool[target + 1]();
         dp[0] = true;
         for (const auto& num : nums) {
             for (size_t s = target; s >= num; s--)
@@ -16,6 +16,8 @@ public:
             if(dp[target])
                 return true;
         }
-        return dp[target];
+        bool result = dp[target];
+        delete[] dp;
+        return result;
     }
 };
