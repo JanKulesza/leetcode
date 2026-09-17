@@ -2,10 +2,10 @@ class Solution {
 public:
     int numIslands(vector<vector<char>>& grid) {
         int numOfIslands = 0;
-        for (uint16_t i = 0; i < grid.size(); i++) 
-            for (uint16_t j = 0; j < grid[i].size(); j++) {
+        for (int i = 0; i < grid.size(); i++) 
+            for (int j = 0; j < grid[i].size(); j++) {
                 if (grid[i][j] == '1') {
-                    stack<pair<uint16_t, uint16_t>> stack;
+                    stack<pair<int, int>> stack;
                     stack.emplace(i, j);
                     numOfIslands++;
                     while (!stack.empty())
