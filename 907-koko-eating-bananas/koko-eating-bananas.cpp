@@ -3,10 +3,11 @@ public:
     int minEatingSpeed(vector<int>& piles, int h) {
         int r = 0;
         for (int i = 0; i < piles.size(); i++)
-        	r = max(piles[i], r);
+            if(piles[i] > r)
+        	    r = piles[i];
         if (piles.size() == h)
         	return r;
-        
+
         int l = 0;
         r--;
         while (l < r)
