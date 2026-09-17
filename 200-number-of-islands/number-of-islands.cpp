@@ -8,17 +8,16 @@ public:
                     stack<pair<int, int>> stack;
                     stack.emplace(i, j);
                     numOfIslands++;
+                    grid[i][j] = '0';
                     while (!stack.empty())
                     {
                         auto [ci, cj] = stack.top();
                         stack.pop();
-                        if (grid[ci][cj] == '0')
-                            continue;
-
-                        grid[ci][cj] = '0';
                         for (const auto& [di, dj] : { pair{1,0}, {0,1}, {0,-1}, {-1,0} }) {
-                            if (ci + di < grid.size() && ci + di >= 0 && cj + dj < grid[0].size() && cj + dj >= 0 && grid[ci + di][cj + dj] == '1')
+                            if (ci + di < grid.size() && ci + di >= 0 && cj + dj < grid[0].size() && cj + dj >= 0 && grid[ci + di][cj + dj] == '1') {
                                 stack.emplace(ci + di, cj + dj);
+                                grid[ci + di][cj + dj] = '0';
+                            }
                         }
                     }
                 }
