@@ -8,13 +8,13 @@ public:
                 currSum += nums[i];
                 maxSum = max(maxSum, currSum);
             } 
-            else {
-                if(maxSum <= 0)
-                    maxSum = max(maxSum, nums[i]);
+            else                 
                 currSum = 0;
-                continue;
-            }
         }
+        if(maxSum < 0)
+        for(int i = 0; i < nums.size(); i++)
+            if(nums[i] > maxSum)
+                maxSum = nums[i];
         return maxSum;
     }
 };
