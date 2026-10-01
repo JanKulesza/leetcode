@@ -12,7 +12,7 @@ class Solution {
 public:
     int toSwap = 404;
     int temp = 404;
-    ListNode* rotate(ListNode* head, int k) {
+    ListNode* rotate(ListNode* head, int& k) {
         if(k == 0)
             return head;
         ListNode* h = head;
@@ -36,7 +36,7 @@ public:
             return head;
         int N = 0;
         ListNode* h = head;
-        
+
         while(h != nullptr) {
             N++;
             h = h->next;
