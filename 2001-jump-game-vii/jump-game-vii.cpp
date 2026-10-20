@@ -1,26 +1,17 @@
 class Solution {
 public:
-    bool canReach(string s, int minJump, int maxJump) {
-        if(s.back() == '1')
-            return false;
-        int l = minJump;
-        int r = maxJump;
-        int lastR = 0;
+    bool canReach(string& s, int& minJump, int& maxJump) {
+        s[0] = '2';
+        int reachableCount = 0;
         for(int i = 1; i < s.size(); i++) {
-            if(s[i] != '0')
-                continue;
+            if(i >= minJump && s[i - minJump] == '2')
+                reachableCount++;
+            if(i > maxJump && s[i - maxJump - 1] == '2')
+                reachableCount--;
 
-            if(l < s.size() && s.size() - 1 <= r)
-                    return true;
-
-            if(l <= i && i <= r || i <= lastR) {
-                l = i + minJump;
-                if(l >= s.size())
-                    break;
-                lastR = r;
-                r = i + maxJump;
-            }
+            if(reachableCount > 0 && s[i] == '0')
+                s[i] = '2';
         }
-        return false;
+        return s.back() == '2';
     }
 };
