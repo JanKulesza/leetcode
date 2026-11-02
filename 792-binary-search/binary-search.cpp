@@ -5,10 +5,8 @@ public:
         int r = nums.size() - 1;
         while(l < r) {
             int s = (l + r) / 2;
-            if(nums[s] == target)
-                return s;
-            if(nums[s] > target)
-                r = s - 1;
+            if(nums[s] >= target)
+                r = s;
             else 
                 l = s + 1;
         }
